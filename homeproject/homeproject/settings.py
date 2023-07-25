@@ -149,6 +149,6 @@ LOGGING = {
     },
     "loggers": {
         "django": {"handlers": ["console", "file"], "level": "INFO"},
-        "l01app": {"handlers": ["file"], "level": "DEBUG", "propagate": True},
+        "game": {"handlers": ["file"], "level": "DEBUG", "propagate": True},
     },
 }
