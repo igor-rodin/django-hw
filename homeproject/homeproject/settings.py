@@ -148,7 +148,12 @@ LOGGING = {
         },
     },
     "loggers": {
-        "django": {"handlers": ["console", "file"], "level": "INFO"},
+        "django": {"handlers": ["console", "file"], "level": "WARNING"},
         "game": {"handlers": ["file"], "level": "DEBUG", "propagate": True},
+        "lesson_1": {
+            "handlers": ["file", "console"],
+            "level": "INFO",
+            "propagate": True,
+        },
     },
 }
