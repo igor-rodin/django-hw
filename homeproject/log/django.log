@@ -1,0 +1,58 @@
+INFO 2023-07-25 16:55:19,004 autoreload 24966 8488656384 Watching for file changes with StatReloader
+INFO 2023-07-25 16:55:49,279 basehttp 24966 6159331328 "GET /games/coin HTTP/1.1" 301 0
+INFO 2023-07-25 16:55:49,283 basehttp 24966 6159331328 "GET /games/coin/ HTTP/1.1" 200 11
+INFO 2023-07-25 16:56:43,986 basehttp 24966 6159331328 "GET / HTTP/1.1" 200 22
+INFO 2023-07-25 16:57:01,540 basehttp 24966 6159331328 "GET /games/dice HTTP/1.1" 301 0
+INFO 2023-07-25 16:57:01,544 basehttp 24966 6159331328 "GET /games/dice/ HTTP/1.1" 200 10
+INFO 2023-07-25 17:11:07,225 autoreload 24966 8488656384 /Users/igor-rodin/work/gb/django/seminars/testproject/seminar/seminar/urls.py changed, reloading.
+INFO 2023-07-25 17:11:07,524 autoreload 40740 8488656384 Watching for file changes with StatReloader
+INFO 2023-07-25 17:11:17,609 basehttp 40740 6166392832 "GET /test HTTP/1.1" 200 22
+INFO 2023-07-25 17:11:43,434 autoreload 40740 8488656384 /Users/igor-rodin/work/gb/django/seminars/testproject/seminar/seminar/urls.py changed, reloading.
+INFO 2023-07-25 17:11:43,705 autoreload 41280 8488656384 Watching for file changes with StatReloader
+INFO 2023-07-25 17:11:55,993 autoreload 41280 8488656384 /Users/igor-rodin/work/gb/django/seminars/testproject/seminar/lesson_1/urls.py changed, reloading.
+INFO 2023-07-25 17:11:56,229 autoreload 41631 8488656384 Watching for file changes with StatReloader
+INFO 2023-07-25 17:11:57,389 autoreload 41631 8488656384 /Users/igor-rodin/work/gb/django/seminars/testproject/seminar/lesson_1/urls.py changed, reloading.
+INFO 2023-07-25 17:11:57,549 autoreload 41634 8488656384 Watching for file changes with StatReloader
+INFO 2023-07-25 17:12:00,762 basehttp 41634 6193786880 "GET /test HTTP/1.1" 301 0
+INFO 2023-07-25 17:12:00,767 basehttp 41634 6193786880 "GET /test/ HTTP/1.1" 200 22
+INFO 2023-07-25 17:13:15,933 basehttp 41634 6193786880 "GET /test/ HTTP/1.1" 200 22
+INFO 2023-07-25 17:13:18,768 basehttp 41634 6193786880 "GET /test/ HTTP/1.1" 200 22
+INFO 2023-07-25 17:13:30,539 basehttp 41634 6193786880 "GET /games/lucky/ HTTP/1.1" 200 11
+INFO 2023-07-25 17:13:32,942 basehttp 41634 6193786880 "GET /games/lucky/ HTTP/1.1" 200 11
+INFO 2023-07-25 17:13:33,189 basehttp 41634 6193786880 "GET /games/lucky/ HTTP/1.1" 200 11
+INFO 2023-07-25 17:13:33,377 basehttp 41634 6193786880 "GET /games/lucky/ HTTP/1.1" 200 11
+INFO 2023-07-25 17:13:33,544 basehttp 41634 6193786880 "GET /games/lucky/ HTTP/1.1" 200 10
+INFO 2023-07-25 17:13:40,768 basehttp 41634 6193786880 "GET /games/dice/ HTTP/1.1" 200 10
+INFO 2023-07-25 17:13:46,056 basehttp 41634 6193786880 "GET /games/coin/ HTTP/1.1" 200 13
+INFO 2023-07-25 17:14:52,661 basehttp 41634 6193786880 "GET /games/coin/ HTTP/1.1" 200 13
+INFO 2023-07-25 17:14:54,395 basehttp 41634 6193786880 "GET /games/coin/ HTTP/1.1" 200 13
+INFO 2023-07-25 17:14:56,017 basehttp 41634 6193786880 "GET /games/coin/ HTTP/1.1" 200 11
+WARNING 2023-07-25 17:14:56,077 log 41634 6193786880 Not Found: /favicon.ico
+WARNING 2023-07-25 17:14:56,078 basehttp 41634 6193786880 "GET /favicon.ico HTTP/1.1" 404 2383
+INFO 2023-07-25 17:14:58,059 basehttp 41634 6193786880 "GET /games/coin/ HTTP/1.1" 200 11
+WARNING 2023-07-25 17:14:58,098 log 41634 6193786880 Not Found: /favicon.ico
+WARNING 2023-07-25 17:14:58,098 basehttp 41634 6193786880 "GET /favicon.ico HTTP/1.1" 404 2383
+INFO 2023-07-25 17:15:32,478 autoreload 45230 8488656384 Watching for file changes with StatReloader
+INFO 2023-07-25 17:15:55,485 basehttp 45230 6129856512 "GET /test HTTP/1.1" 301 0
+INFO 2023-07-25 17:15:55,546 basehttp 45230 6129856512 "GET /test/ HTTP/1.1" 200 22
+INFO 2023-07-25 17:16:00,901 basehttp 45230 6129856512 "GET /test/ HTTP/1.1" 200 22
+WARNING 2023-07-25 17:16:10,483 log 45230 6129856512 Not Found: /game/coin
+WARNING 2023-07-25 17:16:10,484 basehttp 45230 6129856512 "GET /game/coin HTTP/1.1" 404 2381
+INFO 2023-07-25 17:16:36,700 basehttp 45230 6129856512 "GET /games/coin HTTP/1.1" 301 0
+INFO 2023-07-25 17:16:37,083 basehttp 45230 6129856512 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:16:42,933 basehttp 45230 6146682880 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:16:44,020 basehttp 45230 6146682880 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:16:44,495 basehttp 45230 6146682880 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:16:44,940 basehttp 45230 6146682880 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:16:51,327 basehttp 45230 6129856512 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:16:52,606 basehttp 45230 6129856512 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:16:52,819 basehttp 45230 6129856512 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:16:53,029 basehttp 45230 6129856512 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:16:53,224 basehttp 45230 6129856512 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:16:53,396 basehttp 45230 6129856512 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:16:53,655 basehttp 45230 6129856512 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:16:53,832 basehttp 45230 6129856512 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:16:55,749 basehttp 45230 6129856512 "GET /games/coin/ HTTP/1.1" 200 14
+INFO 2023-07-25 17:17:05,187 basehttp 45230 6129856512 - Broken pipe from ('192.168.0.147', 65450)
+INFO 2023-07-25 17:21:00,814 autoreload 50668 8488656384 Watching for file changes with StatReloader
+INFO 2023-07-25 17:21:04,448 basehttp 50668 6134493184 "GET /games/coin/ HTTP/1.1" 200 14
