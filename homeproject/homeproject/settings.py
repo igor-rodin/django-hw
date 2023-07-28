@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "lesson_1.apps.Lesson1Config",
     "game.apps.GameConfig",
+    "blog.apps.BlogConfig",
 ]
 
 MIDDLEWARE = [
