@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 def coin(request: HttpRequest):
     coin = Coin(coin_side=random.choice(Coin.Side.labels))
     coin.save()
-    logger.info("coin running...")
+    logger.info(f"Run coin: {coin}")
     return HttpResponse(f"<h2>{coin}</h2>")
 
 

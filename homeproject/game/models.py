@@ -1,6 +1,6 @@
 from collections import defaultdict
 from django.db import models
-from django.utils import timezone
+from django.utils import timezone, dateformat
 
 
 # Create your models here.
@@ -13,7 +13,8 @@ class Coin(models.Model):
     time_throw = models.DateTimeField(default=timezone.now)
 
     def __str__(self) -> str:
-        return f"{self.coin_side}:{self.time_throw}"
+        throw_time = dateformat.format(self.time_throw, "d-m-Y H:i:s")
+        return f"{self.coin_side}: {throw_time}"
 
     @staticmethod
     def get_stat(n_last: int) -> dict[str, int]:
