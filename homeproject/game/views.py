@@ -2,13 +2,15 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 import random
 import logging
+from .models import Coin
 
 logger = logging.getLogger(__name__)
 
 
 # Create your views here.
 def coin(request: HttpRequest):
-    coin = random.choice(["heads", "tails"])
+    coin = Coin(coin_side=random.choice(Coin.Side.labels))
+    coin.save()
     logger.info("coin running...")
     return HttpResponse(f"<h2>{coin}</h2>")
 
