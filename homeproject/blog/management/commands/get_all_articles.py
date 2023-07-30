@@ -15,5 +15,6 @@ class Command(BaseCommand):
         n_articals = options.get("count")
         if n_articals:
             articals = Article.objects.all()[:n_articals]
-        articals = Article.objects.all()
+        else:
+            articals = Article.objects.all()
         self.stdout.write(f"{articals}")
