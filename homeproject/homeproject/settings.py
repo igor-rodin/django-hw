@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "lesson_1.apps.Lesson1Config",
     "game.apps.GameConfig",
     "blog.apps.BlogConfig",
+    "shop.apps.ShopConfig",
 ]
 
 MIDDLEWARE = [

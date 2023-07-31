@@ -9,7 +9,7 @@ class Command(BaseCommand):
     )
 
     def add_arguments(self, parser: CommandParser) -> None:
-        parser.add_argument("name", type=str, help="Aythor name")
+        parser.add_argument("name", type=str, help="Author name")
 
         parser.add_argument(
             "-n", "--number", type=int, required=False, help="Number articles to show"
