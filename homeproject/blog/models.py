@@ -21,7 +21,9 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     date_published = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(
+        Author, on_delete=models.CASCADE, related_name="articles"
+    )
     category = models.CharField(max_length=100)
     n_views = models.PositiveIntegerField(
         default=0, verbose_name="Количство просмотров"

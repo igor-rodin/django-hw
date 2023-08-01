@@ -4,7 +4,7 @@ from . import views
 app_name = "game"
 
 urlpatterns = [
-    path("coin/", views.coin, name="coin"),
-    path("dice/", views.dice, name="dice"),
-    path("lucky/", views.lucky, name="lucky"),
+    path("coin/<int:count>", views.coin, name="coin"),
+    path("dice/<int:count>", views.dice, name="dice"),
+    path("lucky/<int:count>", views.lucky, name="lucky"),
 ]
