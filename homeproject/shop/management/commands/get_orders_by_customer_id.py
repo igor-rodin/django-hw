@@ -1,6 +1,6 @@
 from typing import Any
 from django.core.management.base import BaseCommand, CommandParser
-from shop.models import Order
+from shop.models import Order, OrderLine
 
 
 class Command(BaseCommand):
@@ -35,5 +35,6 @@ class Command(BaseCommand):
         self.stdout.write("Orders:")
         for order in orders:
             self.stdout.write(f"\n{order}: Total price: {order.total_price}")
-            for p in order.products.all():
-                self.stdout.write(f"{p.title} {p.quantity} {p.price}")
+            order_lines = OrderLine.objects.filter(order=order)
+            for p in order_lines.all():
+                self.stdout.write(f"{p.product.title} {p.quantity} {p.product.price}")

@@ -30,7 +30,7 @@ class Product(models.Model):
     price = models.DecimalField(
         max_digits=8, decimal_places=2, verbose_name="Цена товара"
     )
-    quantity = models.PositiveIntegerField(verbose_name="Количество товара")
+    # quantity = models.PositiveIntegerField(verbose_name="Количество товара")
     created = models.DateTimeField(
         auto_now_add=True, verbose_name="Дата добавления товара"
     )
@@ -43,9 +43,12 @@ class Order(models.Model):
     customer = models.ForeignKey(
         Customer, on_delete=models.CASCADE, related_name="orders", verbose_name="Клиент"
     )
-    products = models.ManyToManyField(
-        Product, related_name="products", verbose_name="Товары в заказе"
-    )
+    # products = models.ManyToManyField(
+    #     Product,
+    #     through="OrderLine",
+    #     related_name="products",
+    #     verbose_name="Товары в заказе",
+    # )
 
     created = models.DateTimeField(
         auto_now_add=True, verbose_name="Дата оформления заказа"
@@ -57,10 +60,27 @@ class Order(models.Model):
     @cached_property
     def total_price(self):
         res = Decimal(0)
-        for product in self.products.all():
-            res += product.price * product.quantity
+        order_lines = OrderLine.objects.filter(order=self)
+        for product in order_lines:
+            res += product.product.price * product.quantity
         return res
 
     class Meta:
         ordering: ["-created"]
         indexes: models.Index(fields=["-created"])
+
+
+class OrderLine(models.Model):
+    order = models.ForeignKey(
+        Order, on_delete=models.PROTECT, related_name="order", verbose_name="Заказ"
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.PROTECT,
+        related_name="product",
+        verbose_name="Товар в заказе",
+    )
+    quantity = models.PositiveIntegerField(verbose_name="Количество товара в заказе")
+
+    def __str__(self):
+        return f"{self.product.title} - {self.quantity}"

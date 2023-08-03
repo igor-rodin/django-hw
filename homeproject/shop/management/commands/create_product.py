@@ -9,7 +9,6 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("title", type=str, help="Prooduct title")
         parser.add_argument("price", type=Decimal, help="Product price")
-        parser.add_argument("quantity", type=int, help="Product quantity")
         parser.add_argument(
             "-d", "--description", type=str, required=False, help="Product description"
         )
@@ -18,7 +17,6 @@ class Command(BaseCommand):
         product = Product(
             title=options.get("title"),
             price=options.get("price"),
-            quantity=options.get("quantity"),
         )
         desc = options.get("description")
         if desc:

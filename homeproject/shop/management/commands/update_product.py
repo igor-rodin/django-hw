@@ -18,9 +18,9 @@ class Command(BaseCommand):
         parser.add_argument(
             "-p", "--price", type=Decimal, required=False, help="Product price"
         )
-        parser.add_argument(
-            "-c", "--count", type=int, required=False, help="Product quantity"
-        )
+        # parser.add_argument(
+        #     "-c", "--count", type=int, required=False, help="Product quantity"
+        # )
 
     def handle(self, *args, **options):
         pk = options.get("id")
@@ -37,9 +37,9 @@ class Command(BaseCommand):
         if new_price:
             product.price = new_price
 
-        new_count = options.get("count")
-        if new_count:
-            product.quantity = new_count
+        # new_count = options.get("count")
+        # if new_count:
+        #     product.quantity = new_count
 
         product.save()
         self.stdout.write(f"{product}")

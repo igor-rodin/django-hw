@@ -24,4 +24,8 @@ urlpatterns = [
         "games/",
         include("game.urls", namespace="games"),
     ),
+    path(
+        "blog/",
+        include("blog.urls", namespace="blog"),
+    ),
 ]

@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %} {% block content %}
+<div class="container m-lg-auto text-center">
+  <h1 class="h1 m-5">{{ caption }} {{ author.full_name }}</h1>
+  <ul>
+    {% for article in articles %}
+    <li>
+      {% if article.is_published %}
+      <a href="{% url 'blog:article_detail' article.pk %}">
+        {{ article.title }}
+      </a>
+      {% else %} {{ article.title }} {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
