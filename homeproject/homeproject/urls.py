@@ -28,4 +28,8 @@ urlpatterns = [
         "blog/",
         include("blog.urls", namespace="blog"),
     ),
+    path(
+        "shop/",
+        include("shop.urls", namespace="shop"),
+    ),
 ]

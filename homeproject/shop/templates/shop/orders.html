@@ -1,0 +1,7 @@
+{% extends 'shop/base.html' %} {% block content %}
+
+<h1 class="h1">{{ customer }}</h1>
+
+{% for order_line in order_lines %}
+<h2 class="h2">{{ order_line.total_price }}</h2>
+{% endfor %} {% endblock %}

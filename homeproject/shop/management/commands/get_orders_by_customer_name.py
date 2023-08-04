@@ -39,6 +39,5 @@ class Command(BaseCommand):
         self.stdout.write("Orders:")
         for order in orders:
             self.stdout.write(f"\n{order}: Total price: {order.total_price}")
-            order_lines = OrderLine.objects.filter(order=order)
-            for p in order_lines.all():
+            for p in order.order_lines.all():
                 self.stdout.write(f"{p.product.title} {p.quantity} {p.product.price}")

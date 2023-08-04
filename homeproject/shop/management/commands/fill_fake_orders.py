@@ -1,6 +1,7 @@
+import datetime
 from typing import Any
 from django.core.management.base import BaseCommand, CommandParser
-from shop.models import Product, Customer, Order
+from shop.models import Product, Customer, Order, OrderLine
 import random
 
 
@@ -38,6 +39,10 @@ class Command(BaseCommand):
         n_customers = options.get("cust")
         n_products = options.get("product")
 
+        order_lines = OrderLine.objects.all()
+        if order_lines:
+            order_lines.delete()
+
         orders = Order.objects.all()
         if orders:
             orders.delete()
@@ -63,7 +68,6 @@ class Command(BaseCommand):
             product = Product(
                 title=f"Product-{i}",
                 price=random.uniform(100.0, 500_000.0),
-                quantity=random.randrange(100),
             )
             product.save()
 
@@ -72,10 +76,16 @@ class Command(BaseCommand):
 
         for i in range(1, n_orders + 1):
             rnd_cust = random.choice(customers)
-            order = Order(customer=rnd_cust)
+            order = Order.objects.create(customer=rnd_cust)
+            order.created = datetime.datetime(
+                random.randint(2021, 2023), random.randint(1, 12), random.randint(1, 30)
+            )
             order.save()
 
             rnd_prod = random.choices(products, k=random.randrange(1, n_products))
-            order.products.add(*rnd_prod)
+            for p in rnd_prod:
+                OrderLine.objects.create(
+                    order=order, product=p, quantity=random.randint(1, 5)
+                )
 
         self.stdout.write("Data filled...")
