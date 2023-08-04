@@ -157,5 +157,6 @@ LOGGING = {
             "level": "INFO",
             "propagate": True,
         },
+        "blog": {"handlers": ["console", "file"], "level": "DEBUG", "propagate": True},
     },
 }

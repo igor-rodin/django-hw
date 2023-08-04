@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest
 from .models import Author, Article
+from .forms import AuthorForms
+import logging
 
-# Create your views here.
+logger = logging.getLogger(__name__)
 
 
 def author_articles(request: HttpRequest, auth_pk: int):
@@ -27,3 +29,20 @@ def article_detail(request: HttpRequest, id: int):
         "comments": comments,
     }
     return render(request, template_name="blog/article.html", context=context)
+
+
+def add_author(request: HttpRequest):
+    if request.method == "POST":
+        form = AuthorForms(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data.get("name")
+            surname = form.cleaned_data.get("surname")
+            email = form.cleaned_data.get("email")
+            biography = form.cleaned_data.get("biography")
+            birthday = form.cleaned_data.get("birthday")
+            logger.info(f"Get {name} {surname} {email} {biography} {birthday}")
+    else:
+        form = AuthorForms()
+    return render(
+        request=request, template_name="blog/author_form.html", context={"form": form}
+    )
