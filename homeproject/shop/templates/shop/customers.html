@@ -1,0 +1,31 @@
+{% extends 'shop/base.html' %} {% block content %}
+
+<h1 class="h1">{{ title }}</h1>
+
+<ul class="list-group list-group-flush">
+  {% for line in customers %}
+  <li class="list-group-item">
+    <div class="row">
+      <h4 class="h4">{{ line.name }} (email: {{ line.email }})</h4>
+    </div>
+    <a href=" {% url 'shop:customer_orders' line.pk %}"> Все заказы </a><br />
+    <div class="row row-cols-auto">
+      <div class="col">Заказано товаров за последний:</div>
+      <div class="col">
+        <a href=" {% url 'shop:customer_products' line.pk 'week' %}">
+          неделю
+        </a>
+      </div>
+      <div class="col">
+        <a href=" {% url 'shop:customer_products' line.pk 'month' %}">
+          месяц
+        </a>
+      </div>
+      <div class="col">
+        <a href=" {% url 'shop:customer_products' line.pk 'year' %}"> год </a>
+      </div>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

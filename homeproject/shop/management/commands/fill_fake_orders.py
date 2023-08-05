@@ -77,8 +77,8 @@ class Command(BaseCommand):
         for i in range(1, n_orders + 1):
             rnd_cust = random.choice(customers)
             order = Order.objects.create(customer=rnd_cust)
-            order.created = datetime.datetime(
-                random.randint(2021, 2023), random.randint(1, 12), random.randint(1, 30)
+            order.created = datetime.date(
+                2023, random.randint(1, 8), random.randint(1, 30)
             )
             order.save()
 

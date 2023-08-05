@@ -1,7 +1,45 @@
-{% extends 'shop/base.html' %} {% block content %}
-
-<h1 class="h1">{{ customer }}</h1>
-
-{% for order_line in order_lines %}
-<h2 class="h2">{{ order_line.total_price }}</h2>
-{% endfor %} {% endblock %}
+{% extends 'shop/base.html' %} {% block content %} {% load humanize %}
+<h1 class="h1">{{ customer }} / Всего заказов - {{ orders | length }}</h1>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+  {% for order in orders %}
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#flush-collapse{{ order.pk }}"
+        aria-expanded="false"
+        aria-controls="flush-collapseOne"
+      >
+        {{ order.created }} - на сумму: {{ order.total_price|intcomma }} руб.
+      </button>
+    </h2>
+    <div
+      id="flush-collapse{{ order.pk }}"
+      class="accordion-collapse collapse"
+      data-bs-parent="#accordionFlushExample"
+    >
+      <div class="accordion-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Наименование</th>
+              <th scope="col">Количество</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for line in order.order_lines.all %}
+            <tr>
+              <td>{{ line.product.title }}</td>
+              <td>{{ line.quantity }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

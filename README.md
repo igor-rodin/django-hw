@@ -22,6 +22,26 @@
     python manage.py runserver
     ```
 
+- Создать миграции и заполнить фейковыми данными для магазина (shop app)
+
+  ```bash
+    python manage.py makemigrations
+    python manage.py migrate
+    python manage.py fill_fake_orders --products=20 --customers=10 --orders=40
+    ```
+
+## Урок 3. Шаблоны, классы и формы
+
+**shop** - добавлены шаблоны для отображения заказов клиента и заказанных им товаров за последние недею, месяц, год
+
+По адресу ```http://127.0.0.1:8000/shop``` - список клиентов. 
+
+По адресам
+
+- ```http://127.0.0.1:8000/shop/customers/<cust_id>/orders/``` - все заказы клиента с ```<cust_id>```
+
+- ```http://127.0.0.1:8000/shop/customers/<cust_id>/products/<period>/``` - все заказанные клиентом с ```<cust_id>``` товары за последний период ```<period>```
+
 ## Урок 2. Django ORM и связи
 
   **blog**: Модели - "Автор", "Статья" и "Комментарий" и CRUD операции на ними

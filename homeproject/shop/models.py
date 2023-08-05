@@ -30,7 +30,6 @@ class Product(models.Model):
     price = models.DecimalField(
         max_digits=8, decimal_places=2, verbose_name="Цена товара"
     )
-    # quantity = models.PositiveIntegerField(verbose_name="Количество товара")
     created = models.DateTimeField(
         auto_now_add=True, verbose_name="Дата добавления товара"
     )
@@ -84,4 +83,7 @@ class OrderLine(models.Model):
         return self.product.price * self.quantity
 
     def __str__(self):
-        return f"{self.product.title} - {self.quantity}"
+        return f"{self.product.title}-{self.quantity}"
+
+    class Meta:
+        ordering = ["-pk"]
