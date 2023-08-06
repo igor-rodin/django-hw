@@ -1,1 +1,31 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/base.html' %}{% block content %}
+<div class="container m-lg-auto text_center">
+  <h1 class="h1">{{ post.author.full_name }} / {{ post.title }}</h1>
+  <h3 class="h3">Категория: {{ post.category }}</h3>
+  <div class="row">{{ post.content }}</div>
+  <div class="row"><span>Количество просмотров: {{ post.n_views }}</span></div>
+  <h3 class="h3">Коментарии:</h3>
+  <div class="row">
+    {% if comments %}
+    <ul>
+      {% for comment in comments %}
+      <li>
+        {{ comment.comment }} ({{ comment.author.full_name }})
+        <span>Обновлено: {{ comment.updated }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %} Коментарии отсутствуют {% endif %}
+  </div>
+  <div class="row">
+    <h4 class="h4">Добавить комментарий:</h4>
+    <div class="row">
+      <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+
+        <input type="submit" value="Добавить" />
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

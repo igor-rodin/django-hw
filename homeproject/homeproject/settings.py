@@ -113,7 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "ru-ru"
 
-TIME_ZONE = "UTC"
+# TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
 
@@ -158,5 +159,6 @@ LOGGING = {
             "level": "INFO",
             "propagate": True,
         },
+        "blog": {"handlers": ["console", "file"], "level": "DEBUG", "propagate": True},
     },
 }
