@@ -1,0 +1,9 @@
+{% extends 'game/base.html' %} {% block content %}
+<div class="container m-lg-auto text_start">
+  <h1>Выберите игру</h1>
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Начать игру" />
+  </form>
+</div>
+{% endblock %}

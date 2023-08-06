@@ -52,4 +52,4 @@ class Comment(models.Model):
         return f"{self.author.name} to Article {self.article.title} - {self.comment}"
 
     class Meta:
-        ordering = ["-updated"]
+        ordering = ["updated"]
