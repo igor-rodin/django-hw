@@ -1,12 +1,18 @@
+import logging
 from typing import Any, Dict
 from datetime import date, timedelta
+from django.urls import reverse_lazy
 from django.http import HttpRequest, Http404
 from django.db.models import Sum
 from django.db.models.query import QuerySet
-from django.shortcuts import render, get_list_or_404
-from django.views.generic import ListView
-from .models import OrderLine, Order, Customer
+from django.shortcuts import render, get_list_or_404, redirect
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import UpdateView, DeleteView
+from .models import OrderLine, Order, Customer, Product
+from .forms import ProductForm
 
+
+logger = logging.getLogger(__name__)
 
 DAYS_IN_WEEK = 7
 DAYS_IN_MONTH = 30
@@ -77,3 +83,46 @@ class CustomersView(ListView):
     template_name = "shop/customers.html"
     context_object_name = "customers"
     extra_context = {"title": "Клиенты"}
+
+
+def add_product(request: HttpRequest):
+    if request.method == "POST":
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            product = Product.objects.create(**form.cleaned_data)
+            logger.debug(f"Product added: {product=}")
+            return redirect("shop:all_products")
+
+    else:
+        form = ProductForm()
+    context = {"form": form, "caption": "Новый товар", "button_caption": "Добавить"}
+    return render(request, template_name="shop/product_form.html", context=context)
+
+
+class ProductUpdateView(UpdateView):
+    form_class = ProductForm
+    model = Product
+    template_name = "shop/product_form.html"
+    extra_context = {"caption": "Обновить товар", "button_caption": "Сохранить"}
+    success_url = reverse_lazy("shop:all_products")
+    context_object_name = "product"
+
+
+class CatalogVew(ListView):
+    model = Product
+    template_name = "shop/catalog.html"
+    context_object_name = "catalog"
+    extra_context = {"title": "Каталог товаров"}
+
+
+class ProductDeleteVew(DeleteView):
+    model = Product
+    template_name = "shop/product_confirm_delete.html"
+    context_object_name = "product"
+    success_url = reverse_lazy("shop:all_products")
+
+
+class ProductVew(DetailView):
+    model = Product
+    template_name = "shop/product_detail.html"
+    context_object_name = "product"

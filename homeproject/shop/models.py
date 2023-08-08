@@ -30,6 +30,7 @@ class Product(models.Model):
     price = models.DecimalField(
         max_digits=8, decimal_places=2, verbose_name="Цена товара"
     )
+    image = models.ImageField(upload_to="products/", null=True, default=None)
     created = models.DateTimeField(
         auto_now_add=True, verbose_name="Дата добавления товара"
     )
@@ -72,7 +73,7 @@ class OrderLine(models.Model):
     )
     product = models.ForeignKey(
         Product,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name="product",
         verbose_name="Товар в заказе",
     )
