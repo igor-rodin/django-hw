@@ -40,21 +40,22 @@ class Command(BaseCommand):
         n_products = options.get("product")
 
         order_lines = OrderLine.objects.all()
-        if order_lines:
+        if order_lines.exists():
             order_lines.delete()
 
         orders = Order.objects.all()
-        if orders:
+        if orders.exists():
             orders.delete()
 
         products = Product.objects.all()
-        if products:
+        if products.exists():
             products.delete()
 
         customers = Customer.objects.all()
         if customers:
             customers.delete()
 
+        customers = []
         for i in range(1, n_customers + 1):
             customer = Customer(
                 name=f"Customer-{i}",
@@ -62,17 +63,17 @@ class Command(BaseCommand):
                 phone=f"+79009090088",
                 address=f"Address-{i}",
             )
-            customer.save()
+            customers.append(customer)
+        Customer.objects.bulk_create(customers)
 
+        products = []
         for i in range(1, n_products + 1):
             product = Product(
                 title=f"Product-{i}",
                 price=random.uniform(100.0, 500_000.0),
             )
-            product.save()
-
-        customers = Customer.objects.all()
-        products = Product.objects.all()
+            products.append(product)
+        Product.objects.bulk_create(products)
 
         for i in range(1, n_orders + 1):
             rnd_cust = random.choice(customers)

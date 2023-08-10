@@ -6,18 +6,18 @@ from django.utils import dateformat
 
 # Create your models here.
 class Customer(models.Model):
-    name = models.CharField(max_length=128, verbose_name="Имя клиента")
+    name = models.CharField(max_length=128, verbose_name="Имя")
     email = models.EmailField(
-        unique=True, db_index=True, verbose_name="Электронная почта клиента"
+        unique=True, db_index=True, verbose_name="Электронная почта"
     )
-    phone = models.CharField(max_length=12, verbose_name="Номер телефона клиента")
-    address = models.TextField(verbose_name="Адрес клиента")
-    created = models.DateTimeField(
-        auto_now_add=True, verbose_name="Дата регистрации клиента"
-    )
+    phone = models.CharField(max_length=12, verbose_name="Номер телефона")
+    address = models.TextField(verbose_name="Адрес")
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Дата регистрации")
 
     def __str__(self):
-        return f"Name: {self.name}, Email: {self.email}, Registered: {dateformat.format(self.created, 'd-m-Y H:i:s')}"
+        return (
+            f"{self.name}, Registered: {dateformat.format(self.created, 'd-m-Y H:i:s')}"
+        )
 
     class Meta:
         verbose_name = "Клиент"
