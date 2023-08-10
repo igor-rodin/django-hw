@@ -53,12 +53,10 @@ class Order(models.Model):
         Customer, on_delete=models.CASCADE, related_name="orders", verbose_name="Клиент"
     )
 
-    created = models.DateTimeField(
-        auto_now_add=True, verbose_name="Дата оформления заказа"
-    )
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Дата оформления")
 
     def __str__(self):
-        return f"Customer: {self.customer.name},  Created: {dateformat.format(self.created, 'd-m-Y H:i:s')}"
+        return f"{self.customer.name},  Оформлен: {dateformat.format(self.created, 'd-m-Y H:i:s')}"
 
     @cached_property
     def total_price(self) -> Decimal:
@@ -86,9 +84,9 @@ class OrderLine(models.Model):
         Product,
         on_delete=models.CASCADE,
         related_name="product",
-        verbose_name="Товар в заказе",
+        verbose_name="Товар",
     )
-    quantity = models.PositiveIntegerField(verbose_name="Количество товара в заказе")
+    quantity = models.PositiveIntegerField(verbose_name="Количество")
 
     @cached_property
     def total_price(self) -> Decimal:
