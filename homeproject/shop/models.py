@@ -25,22 +25,23 @@ class Customer(models.Model):
 
 
 class Product(models.Model):
-    title = models.CharField(
-        max_length=128, db_index=True, verbose_name="Название товара"
-    )
-    description = models.TextField(
-        blank=True, null=True, verbose_name="Описание товара"
-    )
+    title = models.CharField(max_length=128, db_index=True, verbose_name="Название")
+    description = models.TextField(blank=True, null=True, verbose_name="Описание")
     price = models.DecimalField(
-        max_digits=8, decimal_places=2, verbose_name="Цена товара"
+        max_digits=8, decimal_places=2, verbose_name="Цена, руб"
     )
-    image = models.ImageField(upload_to="products/", null=True, default=None)
-    created = models.DateTimeField(
-        auto_now_add=True, verbose_name="Дата добавления товара"
+    image = models.ImageField(
+        upload_to="products/", null=True, default=None, verbose_name="Изображение"
     )
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Дата добавления")
 
     def __str__(self):
-        return f"Name: {self.title}, Added: {dateformat.format(self.created, 'd-m-Y H:i:s')}"
+        return f"{self.title}, Added: {dateformat.format(self.created, 'd-m-Y H:i:s')}"
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+
+        return reverse("shop:product_detail", kwargs={"pk": self.pk})
 
     class Meta:
         verbose_name = "Товар"

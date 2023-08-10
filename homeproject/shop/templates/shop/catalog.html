@@ -26,7 +26,7 @@
       <td>{{ product.price|intcomma }}</td>
       <td>{% if product.description %} {{ product.description }}</td>
       {% else %} - {% endif %}
-      <td>{% if product.image %}  <img src="{{ product.image.url }}" class="img-fluid" alt="image-thumbnail" /></td>
+      <td>{% if product.image %}  <img src="{{ product.image.url }}" width='75px' class="img-thumbnail" alt="image-thumbnail" /></td>
       {% else %} - {% endif %}
 
       <td>{{ product.created|date:'d-m-Y H:i' }}</td>

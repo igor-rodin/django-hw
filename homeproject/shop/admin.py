@@ -5,7 +5,18 @@ from .models import Product, Order, OrderLine, Customer
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ("title", "price", "description")
-    # list_filter = ()
+    list_filter = ("created",)
+    ordering = ["-created"]
+    search_fields = ["title", "description"]
+    search_help_text = "Поиск по названию и описанию товара"
+    fieldsets = [
+        (None, {"classes": ["wide"], "fields": ["title", "price"]}),
+        (
+            "Характеристики",
+            {"classes": ["collapse"], "fields": ["description", "image", "created"]},
+        ),
+    ]
+    readonly_fields = ["created"]
 
 
 @admin.register(Customer)
@@ -25,10 +36,10 @@ class CustomerAdmin(admin.ModelAdmin):
 
 
 @admin.register(Order)
-class OtrderAdmin(admin.ModelAdmin):
+class OrderAdmin(admin.ModelAdmin):
     list_display = ("customer", "created")
 
 
 @admin.register(OrderLine)
-class OtrderLineAdmin(admin.ModelAdmin):
+class OrderLineAdmin(admin.ModelAdmin):
     list_display = ("order", "product", "quantity")
