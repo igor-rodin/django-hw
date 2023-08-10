@@ -19,6 +19,10 @@ class Customer(models.Model):
     def __str__(self):
         return f"Name: {self.name}, Email: {self.email}, Registered: {dateformat.format(self.created, 'd-m-Y H:i:s')}"
 
+    class Meta:
+        verbose_name = "Клиент"
+        verbose_name_plural = "Клиенты"
+
 
 class Product(models.Model):
     title = models.CharField(
@@ -37,6 +41,10 @@ class Product(models.Model):
 
     def __str__(self):
         return f"Name: {self.title}, Added: {dateformat.format(self.created, 'd-m-Y H:i:s')}"
+
+    class Meta:
+        verbose_name = "Товар"
+        verbose_name_plural = "Товары"
 
 
 class Order(models.Model):
@@ -60,6 +68,8 @@ class Order(models.Model):
         return res
 
     class Meta:
+        verbose_name = "Заказ"
+        verbose_name_plural = "Заказы"
         ordering: ["-created"]
         indexes: models.Index(fields=["-created"])
 
@@ -87,4 +97,6 @@ class OrderLine(models.Model):
         return f"{self.product.title}-{self.quantity}"
 
     class Meta:
+        verbose_name = "Строка заказа"
+        verbose_name_plural = "Состав заказа"
         ordering = ["-pk"]
