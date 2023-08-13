@@ -1,0 +1,18 @@
+{% extends 'shop/base.html' %} {% block content %}
+
+<div class="center">
+  <form method="post" class="">
+    {% csrf_token %}
+    <h2>Удалить товар</h2>
+    {{ form.errors }}
+    <p>Вы уверены, что хотите удалить "{{ product }}"?</p>
+    <p class="form-buttons">
+      <input type="submit" class="btn btn-danger" value="Удалить" />
+      <a href="{% url 'shop:all_products' %}" class="btn btn-secondary"
+        >Отменить</a
+      >
+    </p>
+  </form>
+</div>
+
+{% endblock %}

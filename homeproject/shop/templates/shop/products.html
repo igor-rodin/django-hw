@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %} {% block content %}
+
+<h1 class="h1">{{ customer.name }} / {{ title }}</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Наименование</th>
+      <th scope="col">Количество</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for line in products %}
+    <tr>
+      <td>{{ line.product__title }}</td>
+      <td>{{ line.total_quantity }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

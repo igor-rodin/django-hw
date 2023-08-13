@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %} {% block content %}
+<div class="container m-lg-auto text_start">
+  <h1>Новый автор:</h1>
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+
+    <input type="submit" value="Добавить" />
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'shop/base.html' %} {% block content %}
+<h1 class="h1">{{ product.title }}</h1>
+<p>Добавлен: {{ product.created|date:'d-m-Y H:i' }}</p>
+<div class="card w-50">
+  {% if product.image %}
+  <img src="{{ product.image.url }}" class="card-img-top" alt="image" />
+  {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">{{ product.description }}</p>
+    <a href=" {% url 'shop:all_products' %}" class="btn btn-outline-primary"
+      >Назад в каталог</a
+    >
+  </div>
+</div>
+{% endblock %}
