@@ -20,7 +20,8 @@ DAYS_IN_YEAR = 365
 
 
 def get_period(period: str) -> (list[date], str):
-    end_date = date.today()
+    end_date = date.today() + timedelta(days=1)
+    end_date = end_date + timedelta(days=1)
     verbose_name = None
     match period:
         case "week":
@@ -87,7 +88,7 @@ class CustomersView(ListView):
 
 def add_product(request: HttpRequest):
     if request.method == "POST":
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = Product.objects.create(**form.cleaned_data)
             logger.debug(f"Product added: {product=}")
