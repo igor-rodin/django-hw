@@ -1,11 +1,11 @@
 {% extends 'shop/base.html' %} {% block content %} {% load humanize %}
 <h1 class="h1">Магазин / {{ title }}</h1>
 
-<div class='row col-12 p-3 me-3 ms-3 card'>
+<div class='row col-12 p-3 me-3'>
     <div class='card-body'>
         <a class='btn btn-info' href="{% url 'shop:add_product' %}"> Добавить товар</a>
     </div>
-</dev>
+</div>
 
 <table class="table table-striped">
   <thead>

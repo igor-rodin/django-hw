@@ -20,7 +20,7 @@
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-          <a class="navbar-brand" href=" {% url 'shop:customers' %} "
+          <a class="navbar-brand" href=" {% url 'shop:all_products' %} "
             >ShopProject</a
           >
           <button
@@ -39,10 +39,21 @@
               <a
                 class="nav-link"
                 aria-current="page"
+                href=" {% url 'shop:customers' %} "
+                >Клиенты</a
+              >
+              <a
+                class="nav-link"
+                aria-current="page"
                 href=" {% url 'shop:all_products' %} "
                 >Каталог</a
               >
-              <a class="nav-link" aria-current="page">О нас</a>
+              <a
+                class="nav-link"
+                aria-current="page"
+                href=" {% url 'welcome:index' %} "
+                >На стартовую страницу</a
+              >
             </div>
           </div>
         </div>

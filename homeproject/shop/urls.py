@@ -7,7 +7,7 @@ verbose_name = "Магазин"
 
 urlpatterns = [
     path(
-        "",
+        "customers/",
         views.CustomersView.as_view(),
         name="customers",
     ),
@@ -22,7 +22,7 @@ urlpatterns = [
         name="customer_products",
     ),
     path(
-        "products/",
+        "",
         views.CatalogVew.as_view(),
         name="all_products",
     ),

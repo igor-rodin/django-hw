@@ -2,6 +2,7 @@ import logging
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest
 from django.db.models import F
+from django.views.generic import ListView, DetailView
 from .models import Author, Article, Comment
 from .forms import AuthorForm, ArticleForm, CommentForm
 
@@ -21,8 +22,9 @@ def author_articles(request: HttpRequest, auth_pk: int):
 
 
 def article_detail(request: HttpRequest, id: int):
-    post = get_object_or_404(Article, pk=id)
-    comments = post.comments.all()
+    post = Article.objects.select_related("author").filter(pk=id).first()
+
+    comments = post.comments.select_related("author").all()
     context = {
         "title": "Статья",
         "caption": "Статья",
@@ -38,15 +40,17 @@ def article_detail(request: HttpRequest, id: int):
             logger.info(f"Add comment: {comment}  {author}")
             comment = Comment(comment=comment, author=author, article=article)
             comment.save()
-            post.n_views = F("n_views") - 1
+            post.n_views -= 1
+            # post.n_views = F("n_views") - 1
             post.save()
-            post.refresh_from_db()
+            # post.refresh_from_db()
             return redirect("blog:article_detail", id=id)
     else:
         form = CommentForm()
-        post.n_views = F("n_views") + 1
+        post.n_views += 1
+        # post.n_views = F("n_views") + 1
         post.save()
-        post.refresh_from_db()
+        # post.refresh_from_db()
         context["form"] = form
 
     return render(request, template_name="blog/article.html", context=context)
@@ -78,13 +82,13 @@ def add_author(request: HttpRequest):
 
 def add_article(request: HttpRequest):
     if request.method == "POST":
-        form = CommentForm(request.POST)
+        form = ArticleForm(request.POST)
         if form.is_valid():
             title = form.cleaned_data.get("title")
             content = form.cleaned_data.get("content")
             category = form.cleaned_data.get("category")
             author = form.cleaned_data.get("author")
-            logger.info(f"Add aarticle: {title} {category} {author}")
+            logger.info(f"Add article: {title} {category} {author}")
             article = Article(
                 title=title,
                 content=content,
@@ -92,9 +96,19 @@ def add_article(request: HttpRequest):
                 author=author,
             )
             article.save()
-            return redirect("blog:article_detail", id=article.pk)
+            return redirect("blog:all_articles")
     else:
-        form = CommentForm()
+        form = ArticleForm()
     return render(
         request=request, template_name="blog/article_form.html", context={"form": form}
     )
+
+
+class ArticlesView(ListView):
+    model = Article
+    context_object_name = "articles"
+    template_name = "blog/articles.html"
+    extra_context = {"caption": "Статьи"}
+
+    def get_queryset(self):
+        return Article.objects.select_related("author").all()

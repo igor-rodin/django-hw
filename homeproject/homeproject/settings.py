@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "game.apps.GameConfig",
     "blog.apps.BlogConfig",
     "shop.apps.ShopConfig",
+    "welcome.apps.WelcomeConfig",
 ]
 
 
